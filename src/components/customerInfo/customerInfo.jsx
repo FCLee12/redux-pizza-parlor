@@ -21,6 +21,7 @@ function CustomerInfo() {
     streetAddress: "",
     city: "",
     zip: "",
+    select: ""
   });
 
   const handleNameChange = (event) => {
@@ -79,7 +80,7 @@ function CustomerInfo() {
       zip: "",
       select: "",
     });
-    routeChange();
+    // routeChange();
   };
   return (
     <div>
@@ -119,17 +120,6 @@ function CustomerInfo() {
             checked
           />
           <label htmlFor="Pickup">Pickup</label>
-        </div>
-        <div>
-          <input
-          onChange={handleSelectChange}
-            type="text"
-            id="Delivery"
-            value="Delivery"
-            name="Delivery"
-            checked
-          />
-          <label htmlFor="Delivery">Delivery</label>
         </div>
         <div>
           <button type="submit">Next</button>
