@@ -24,6 +24,7 @@ function App() {
   const fetchPizza = () => {
     console.log("Fetching pizzas!");
 
+    // GET to grab pizzas from DB
     axios.get("/api/pizza")
       .then((response) => {
         console.log("responding", response.data);
@@ -38,6 +39,7 @@ function App() {
     fetchPizza();
   }, []);
 
+  // Called by the Add Button
   const addPizza = (pizzaObj) => {
     console.log('adding pizza to cart', pizzaObj);
     dispatch({
