@@ -15,11 +15,18 @@ const cart= (state = [], action)=>{
     return state
 }
 
+const customer = (state = [], action) => {
+    if(action.type === "ADD_CUSTOMER_INFO") {
+        return action.payload
+    }
+    return state;
+}
+
 //This is our Redux store.
 const storeInstance = createStore(
     combineReducers({
-        cart
-
+        cart,
+        customer
     }),
     applyMiddleware(logger)
 )
