@@ -6,10 +6,18 @@ import logger from 'redux-logger';
 import './index.css';
 import App from './components/App/App';
 
+//Reducers:
+const cart= (state = [], action)=>{
+    if(action.type=== 'SET_PIZZA'){
+        return action.payload
+    }
+    return state
+}
+
 //This is our Redux store.
 const storeInstance = createStore(
     combineReducers({
-
+        cart
 
     }),
     applyMiddleware(logger)
