@@ -4,7 +4,7 @@ import axios from "axios";
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import { HashRouter as Router, Route } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import CustomerInfo from '../CustomerInfo/CustomerInfo.jsx'
 
@@ -17,18 +17,18 @@ function App() {
     history.push(path);
   }
 
+  const [pizzaList, setPizzaList] = useState([]);
+
   const cart = useSelector((store) => store.cart);
 
   const fetchPizza = () => {
     console.log("Fetching pizzas!");
 
+    // GET to grab pizzas from DB
     axios.get("/api/pizza")
       .then((response) => {
         console.log("responding", response.data);
-        dispatch({
-          type: "SET_PIZZA",
-          payload: response.data,
-        });
+        setPizzaList(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -38,6 +38,15 @@ function App() {
   useEffect(() => {
     fetchPizza();
   }, []);
+
+  // Called by the Add Button
+  const addPizza = (pizzaObj) => {
+    console.log('adding pizza to cart', pizzaObj);
+    dispatch({
+      type: "ADD_PIZZA",
+      payload: pizzaObj,
+    });
+  }
 
   return (
     <Router>
@@ -50,14 +59,14 @@ function App() {
           <h2>Step 1: Select your Pizza</h2>
           <div>
             <ul>
-              {cart.map((pizza) => {
+              {pizzaList.map((pizza) => {
                 return (
                   <li key={pizza.id}>
                     <img src={pizza.image_path}></img>
                     <h3>{pizza.name}</h3>
                     <p>{pizza.description}</p>
                     <p>${pizza.price}</p>
-                    <button>Add</button>
+                    <button onClick={() => addPizza(pizza) }>Add</button>
                     <button>Remove</button>
                   </li>
                 );
