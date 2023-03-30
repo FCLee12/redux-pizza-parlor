@@ -1,5 +1,6 @@
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 function PizzaList({pizzaList, fetchPizza}) {
     console.log('PizzaList is running');
@@ -11,7 +12,7 @@ function PizzaList({pizzaList, fetchPizza}) {
       history.push('/page2');
     }
   
-
+    const dispatch = useDispatch();
 
     // Called by the Add Button
     const addPizza = (pizzaObj) => {
