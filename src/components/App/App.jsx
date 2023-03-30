@@ -5,17 +5,13 @@ import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import { HashRouter as Router, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+
+// Components
 import CustomerInfo from '../CustomerInfo/CustomerInfo.jsx'
+import PizzaList from '../PizzaList/PizzaList.jsx'
 
 function App() {
   const dispatch = useDispatch();
-  const history = useHistory();
-
-  const nextPage = () => {
-    let path = '/page2';
-    history.push(path);
-  }
 
   const [pizzaList, setPizzaList] = useState([]);
 
@@ -39,41 +35,14 @@ function App() {
     fetchPizza();
   }, []);
 
-  // Called by the Add Button
-  const addPizza = (pizzaObj) => {
-    console.log('adding pizza to cart', pizzaObj);
-    dispatch({
-      type: "ADD_PIZZA",
-      payload: pizzaObj,
-    });
-  }
-
   return (
     <Router>
     <div className="App">
       <header className="App-header">
         <h1 className="App-title">Prime Pizza</h1>
       </header>
-      
         <Route exact path="/">
-          <h2>Step 1: Select your Pizza</h2>
-          <div>
-            <ul>
-              {pizzaList.map((pizza) => {
-                return (
-                  <li key={pizza.id}>
-                    <img src={pizza.image_path}></img>
-                    <h3>{pizza.name}</h3>
-                    <p>{pizza.description}</p>
-                    <p>${pizza.price}</p>
-                    <button onClick={() => addPizza(pizza) }>Add</button>
-                    <button>Remove</button>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          <button onClick={nextPage}>Next</button>
+          <PizzaList pizzaList={pizzaList} fetchPizza={fetchPizza} />
         </Route>
         {/* This is a temporary URL route */}
         <Route exact path='/page2'>
