@@ -1,10 +1,11 @@
 import React from 'react';
 import axios from "axios";
-import "./App.css";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom"; //
 import { useDispatch } from "react-redux";
-function customerInfo() {
+import { useState } from 'react';
+
+function CustomerInfo() {
   const history = useHistory();
   const dispatch = useDispatch();
   const routeChange = () => {
@@ -128,4 +129,4 @@ function customerInfo() {
   );
 }
 
-export default customerInfo;
+export default CustomerInfo;
