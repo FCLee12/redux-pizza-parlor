@@ -6,18 +6,23 @@ import { useDispatch } from "react-redux";
 import { useState } from 'react';
 
 function CustomerInfo() {
+
   const history = useHistory();
+
   const dispatch = useDispatch();
+
   const routeChange = () => {
     let path = "/checkout";
     history.push(path);
   };
+
   const [customerInfo, setCustomerInfo] = useState({
     name: "",
     streetAddress: "",
     city: "",
     zip: "",
   });
+
   const handleNameChange = (event) => {
     // handle name input field change
     setCustomerInfo({
@@ -25,6 +30,7 @@ function CustomerInfo() {
       name: event.target.value,
     });
   }; // end handleNameChange
+
   const handleStreetChange = (event) => {
     // handle street input field change
     setCustomerInfo({
@@ -32,6 +38,7 @@ function CustomerInfo() {
       streetAddress: event.target.value,
     });
   }; // end handleStreetChange
+
   const handleCityChange = (event) => {
     // handle city input field change
     setCustomerInfo({
@@ -39,6 +46,7 @@ function CustomerInfo() {
       city: event.target.value,
     });
   }; // end handleCityChange
+
   const handleZipcodeChange = (event) => {
     // handle zipcode input field change
     setCustomerInfo({
@@ -46,6 +54,15 @@ function CustomerInfo() {
       zip: event.target.value,
     });
   }; // end handleZipcodeChange
+
+  const handleSelectChange = (event) => {
+    // handle select input field change
+    setCustomerInfo({
+      ...customerInfo,
+      select: event.target.value,
+    });
+  };
+
   const addInfo = (event) => {
     event.preventDefault();
     console.log("Adding customer information", customerInfo);
@@ -65,61 +82,54 @@ function CustomerInfo() {
     routeChange();
   };
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1 className="App-title">Prime Pizza</h1>
-        <div>
-          <span>
-            {/* We will need to come back and use UseSelevtor to display the actual $ amount */}
-            Total:$28.98
-          </span>
-        </div>
-      </header>
+    <div>
       <h2>Customer Information</h2>
       <form onSubmit={(event) => addInfo(event)}>
         <input
           onChange={handleNameChange}
           type="text"
           placeholder="Name"
-          value={""}
+          value={customerInfo.name}
         />
         <input
           onChange={handleStreetChange}
           type="text"
           placeholder="Street Address"
-          value={""}
+          value={customerInfo.streetAddress}
         />
         <input
           onChange={handleCityChange}
           type="text"
           placeholder="City"
-          value={""}
+          value={customerInfo.city}
         />
         <input
           onChange={handleZipcodeChange}
           type="text"
           placeholder="Zipcode"
-          value={""}
+          value={customerInfo.zip}
         />
         <div>
           <input
-            type="radio"
+            onChange={handleSelectChange}
+            type="text"
             id="Pickup"
             value="Pickup"
             name="Pickup"
             checked
           />
-          <label for="Pickup">Pickup</label>
+          <label htmlFor="Pickup">Pickup</label>
         </div>
         <div>
           <input
-            type="radio"
+          onChange={handleSelectChange}
+            type="text"
             id="Delivery"
             value="Delivery"
             name="Delivery"
             checked
           />
-          <label for="Delivery">Delivery</label>
+          <label htmlFor="Delivery">Delivery</label>
         </div>
         <div>
           <button type="submit">Next</button>
