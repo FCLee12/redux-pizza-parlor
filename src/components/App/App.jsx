@@ -7,8 +7,9 @@ import { HashRouter as Router, Route } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 // Components
-import CustomerInfo from '../CustomerInfo/CustomerInfo.jsx'
-import PizzaList from '../PizzaList/PizzaList.jsx'
+import CustomerInfo from '../CustomerInfo/CustomerInfo.jsx';
+import PizzaList from '../PizzaList/PizzaList.jsx';
+import Checkout from "../Checkout/Checkout";
 
 function App() {
 
@@ -47,6 +48,9 @@ function App() {
         {/* This is a temporary URL route */}
         <Route exact path='/page2'>
           <CustomerInfo />
+        </Route>
+        <Route exact path='/checkout'>
+          <Checkout />
         </Route>
     </div>
     </Router>

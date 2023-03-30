@@ -80,7 +80,7 @@ function CustomerInfo() {
       zip: "",
       select: "",
     });
-    // routeChange();
+    routeChange();
   };
   return (
     <div>
