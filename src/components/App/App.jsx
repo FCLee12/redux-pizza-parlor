@@ -11,7 +11,7 @@ import CustomerInfo from '../CustomerInfo/CustomerInfo.jsx'
 import PizzaList from '../PizzaList/PizzaList.jsx'
 
 function App() {
-  const dispatch = useDispatch();
+
 
   const [pizzaList, setPizzaList] = useState([]);
 
