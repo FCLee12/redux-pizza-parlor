@@ -8,8 +8,9 @@ import App from './components/App/App';
 
 //Reducers:
 const cart= (state = [], action)=>{
-    if(action.type=== 'SET_PIZZA'){
-        return action.payload
+    if(action.type=== 'ADD_PIZZA'){
+        // Array of Pizza Objects
+        return [...state, action.payload]
     }
     return state
 }
