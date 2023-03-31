@@ -11,6 +11,8 @@ const cart= (state = [], action)=>{
     if(action.type=== 'ADD_PIZZA'){
         // Array of Pizza Objects
         return [...state, action.payload]
+    } else if(action.type === 'CLEAR_CART') {
+        return [];
     }
     return state
 }

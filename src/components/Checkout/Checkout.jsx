@@ -12,6 +12,36 @@ function Checkout() {
   const customerInfo = useSelector(store => store.customer)
   const cart = useSelector(store => store.cart)
 
+  const handleClick = (event) => {
+
+    const pizzaOrder = {
+        customer_name: "Donatello",
+        street_address: "20 W 34th St",
+        city: "New York",
+        zip: "10001",
+        type: "Pickup",
+        total: "27.98",
+        pizzas: [{
+            id: "1",
+            quantity: "1"
+          },{
+            id: "2",
+            quantity: "1"
+          }]
+    }
+
+    axios.post('/api/order', pizzaOrder)
+    .then( response => {
+        dispatch({
+            type: 'CLEAR_CART'
+        })
+    })
+    .catch( error => {
+        console.log('POST error, could not post to order table', error);
+        alert('Could not post to order table, try again later!')
+      })
+  }
+
   return (
     <>
         <div className="container">
@@ -22,7 +52,7 @@ function Checkout() {
             </div>
             <div className="empty"></div>
             <div id="forDelivery">
-                <h3>{customerInfo.select}For Delivery</h3>
+                <h3>{customerInfo.select}</h3>
             </div>
         </div>
         <div>
@@ -44,7 +74,9 @@ function Checkout() {
             </table>
         </div>
         <div className="container">
-            <div></div>
+            <div>
+                <button onClick={handleClick}>Checkout</button>
+            </div>
             <div></div>
             <div></div>
         </div>

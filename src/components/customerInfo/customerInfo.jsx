@@ -17,11 +17,11 @@ function CustomerInfo() {
   };
 
   const [customerInfo, setCustomerInfo] = useState({
-    name: "",
-    streetAddress: "",
-    city: "",
-    zip: "",
-    select: ""
+    name: "Tony",
+    streetAddress: "123 FakeStreet",
+    city: "Minneapolis",
+    zip: "55104",
+    select: "For Delivery"
   });
 
   const handleNameChange = (event) => {
