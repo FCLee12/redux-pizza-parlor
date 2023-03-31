@@ -15,11 +15,11 @@ function Checkout() {
   const handleClick = (event) => {
 
     const pizzaOrder = {
-        customer_name: "Donatello",
-        street_address: "20 W 34th St",
-        city: "New York",
-        zip: "10001",
-        type: "Pickup",
+        customer_name: customerInfo.name,
+        street_address: customerInfo.streetAddress,
+        city: customerInfo.city,
+        zip: customerInfo.zip,
+        type: customerInfo.select,
         total: "27.98",
         pizzas: [{
             id: "1",
